@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOTARO's Magazines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #efede4;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        .shell {
+            position: relative;
+            min-width: 1000px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* 设置3d变化 */
+            transform-style: preserve-3d;
+            /* 添加透视效果 */
+            perspective: 1000px;
+        }
+
+        .shell .box {
+            position: relative;
+            width: 189px;
+            height: 336px;
+            transition: 0.3s;
+            overflow: hidden;
+            margin: 15px;
+            transform: rotateY(3deg);
+            transition-delay: .1s;
+            border-radius: 5px;
+            border: #fff 5px solid;
+        }
+
+        /* 当鼠标所有卡片的父元素点shell上时，
+        所有卡片像Y轴翻转20度 */
+        .shell:hover .box {
+            transform: rotateY(15deg);
+        }
+
+        /* 当鼠标悬浮在当前卡片上时，当前卡片的翻转角度为0，
+        并放大一点二五倍，加个阴影 */
+        .shell .box:hover {
+            transform: rotateY(0deg) scale(1.25);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        /* 当鼠标悬浮在卡片上时，
+        当前卡片后面的所有卡片全部都反向翻转负20度 */
+        .shell .box:hover~.box {
+            transform: rotateY(-10deg);
+        }
+
+        .shell .box .images img {
+            width: 100%;
+        }
+
+        .shell .box .content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            padding: 15px;
+        }
+
+        .shell .box .content h2 {
+            color: #fff;
+            transition: 0.3s;
+            font-size: 20px;
+            transform: translateY(25px);
+        }
+
+        .shell .box:hover .content h2 {
+            font-size: 22px;
+            transform: translateY(25px);
+        }
+
+        .shell .box .content p {
+            color: #fff;
+            transition: 0.3s;
+            font-size: 16px;
+            transform: translateY(270px);images
+            /*background-color: rgba(255, 255, 255, 0.7);*/
+        }
+
+        .shell .box:hover .content p {
+            font-size: 20px;
+            transform: translateY(260px);
+        }
+
+        .shell .box .content h4 {
+            color: #fff;
+            transition: 0.5s;
+            font-size: 12px;
+            transform: translateY(320px);
+            background-color: rgba(125, 119, 119, 0.342);
+            width: 94.5px;
+            height: 40px;
+            line-height: 35px;
+            text-align: center;
+            border-right-style: solid;
+            border-color: #fff;
+            border-width: 1px;
+            margin-top: -5px;
+        }
+
+        .shell .box:hover .content h4 {
+            text-align: center;
+            line-height: 35px;
+            font-size: 12px;
+            transform: translateY(265px);
+            background-color: rgba(125, 119, 119, 0.342);
+            width: 94.5px;
+            height: 40px;
+            margin-top: -5px;
+            border-width: 1px;
+            border-right-style: solid;
+            border-color: #fff;
+        }
+
+        .shell .box .content h5 {
+            color: #fff;
+            transition: 0.5s;
+            font-size: 12px;
+            transform: translateY(320px);
+            background-color: rgba(125, 119, 119, 0.342);
+            width: 63px;
+            height: 40px;
+            line-height: 35px;
+            text-align: center;
+            border-right-style: solid;
+            border-color: #fff;
+            border-width: 1px;
+            margin-top: -5px;
+        }
+
+        .shell .box:hover .content h5 {
+            text-align: center;
+            line-height: 35px;
+            font-size: 12px;
+            transform: translateY(265px);
+            background-color: rgba(125, 119, 119, 0.342);
+            width: 63px;
+            height: 40px;
+            margin-top: -5px;
+            border-width: 1px;
+            border-right-style: solid;
+            border-color: rgba(255, 255, 255, 0.636)(255, 255, 255, 0.783)(255, 255, 255, 0.778)(255, 255, 255, 0.778);
+        }
+
+        .shell .box .content h6 {
+            color: #fff;
+            transition: 0.5s;
+            font-size: 8px;
+            transform: translateY(320px);
+            background-color: rgba(125, 119, 119, 0.342);
+            width: 31.5px;
+            height: 40px;
+            line-height: 35px;
+            text-align: center;
+            border-right-style: solid;
+            border-color: #fff;
+            border-width: 1px;
+            margin-top: -5px;
+        }
+
+        .shell .box:hover .content h6 {
+            text-align: center;
+            line-height: 35px;
+            font-size: 8px;
+            transform: translateY(265px);
+            background-color: rgba(125, 119, 119, 0.342);
+            width: 31.5px;
+            height: 40px;
+            margin-top: -5px;
+            border-width: 1px;
+            border-right-style: solid;
+            border-color: rgba(255, 255, 255, 0.636)(255, 255, 255, 0.783)(255, 255, 255, 0.778)(255, 255, 255, 0.778);
+        }
+
+
+        .flex{
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="box">
+            <div class="images">
+                <img src="pics/vogue210723-1.jpg">
+            </div>
+            <div class="content">
+                <h2>VOGUE</h2>
+                <p>8月号</p>
+                <div class="flex">
+                <a href="https://www.youtube.com/watch?v=0iGtIjcIgzQ" target="_blank"><h5 style="margin-left: -15px;">Video</h5></a>
+                <a href="https://www.instagram.com/p/CRtX0AstNau/?utm_medium=copy_link" target="_blank"><h5>Pics</h5></a>
+                <a href="https://www.youtube.com/watch?v=zJRKg9-q2u8" target="_blank"><h5>Uncut</h5></a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="pics/221109 Men's Non No 10.jpg">
+            </div>
+            <div class="content">
+                <h2>MEN'S NON-NO</h2>
+                <p>6.7.8-9.10.12月号</p>
+                <div class="flex">
+                <a href="https://youtu.be/IHBLa-A6_Qw" target="_blank"><h6 style="margin-left: -17px;">6</h6></a>
+                <a href="https://www.mensnonno.jp/beauty/185562/area02/" target="_blank"><h6>Dior</h6></a>
+                <a href="https://www.mensnonno.jp/lifestyle/culture/219617/" target="_blank"><h6>7</h6></a>
+                <a href="https://www.mensnonno.jp/lifestyle/culture/240254/area03/" target="_blank"><h6>8-9</h6></a>
+                <a href="https://youtu.be/ecFCAmbkWMw" target="_blank"><h6>10</h6></a>
+                <a href="https://youtu.be/4M7utpRm2Tk" target="_blank"><h6>12</h6></a>
+                
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="pics/Esquire 10月号.jpg">
+            </div>
+            <div class="content">
+                <h2>Esquire</h2>
+                <p>10月号</p>
+                <div class="flex">
+                <a href="https://www.instagram.com/reel/CizfFdajMdo/" target="_blank"><h4 style="margin-left: -15px;">Video</h4></a>
+                <a href="https://www.esquirekorea.co.kr/article/71552" target="_blank"><h4>Article</h4></a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <a href="https://thetv.jp/news/detail/1086093/" target="_blank">
+            <div class="images">
+                <img src="pics/tv7月.jpg">
+            </div>
+            <div class="content">
+                <h2>The Television </h2>
+                <p>7月号</p>
+            </div>
+            </a>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="pics/nylon japan 7月.jpg">
+            </div>
+            <div class="content">
+                <h2>NYLON JAPAN</h2>
+                <p>7月号</p>
+                <div class="flex">
+                <a href="https://www.youtube.com/watch?v=JTAh-t65KS0"  target="_blank"><h5 style="margin-left: -15px;">Teaser</h5></a>
+                <a href="https://www.instagram.com/p/CfTYwPJMRxm/" target="_blank"><h5>Pics</h5></a>
+                <a href="https://youtu.be/hQSkWmO4fDU" target="_blank"><h5>Video</h5></a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <a href="https://www.vogue.co.jp/lifestyle/article/2022-09-14-toyota-shotaro" target="_blank">
+            <div class="images">
+               <img src="pics/voguejapan2.jpg">
+            </div>
+            <div class="content">
+                <h2>VOGUE JAPAN</h2>
+                <p>News</p>               
+            </div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
